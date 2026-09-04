@@ -1,0 +1,654 @@
+/* ===== DARK MODE (DEFAULT) ===== */
+body.dark-mode {
+    background: #1a1a1a;
+    color: #C0C0C0;
+}
+
+body.dark-mode .container {
+    background: transparent;
+}
+
+/* ===== LIGHT MODE ===== */
+body.light-mode {
+    background: #f8f9fa;
+    color: #333333;
+}
+
+body.light-mode .container {
+    background: #ffffff;
+    box-shadow: 0 0 30px rgba(0,0,0,0.1);
+}
+
+body.light-mode .main-header {
+    background: linear-gradient(135deg, rgba(128, 0, 32, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+    border: 2px solid rgba(128, 0, 32, 0.3);
+}
+
+body.light-mode .main-header::before {
+    background: linear-gradient(90deg, #800020, transparent);
+}
+
+body.light-mode .logo {
+    color: #800020;
+}
+
+body.light-mode .settings-btn {
+    background: rgba(128, 0, 32, 0.2);
+    border: 2px solid rgba(128, 0, 32, 0.4);
+    color: #800020;
+}
+
+body.light-mode .settings-btn:hover {
+    background: rgba(128, 0, 32, 0.4);
+}
+
+body.light-mode .btn-primary {
+    background: linear-gradient(135deg, #800020, #600018);
+    border: 2px solid #800020;
+    color: white;
+}
+
+body.light-mode .btn-primary:hover {
+    background: linear-gradient(135deg, #600018, #800020);
+}
+
+body.light-mode .customer-card {
+    background: rgba(0, 0, 0, 0.03);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode .customer-card:hover {
+    border-color: #800020;
+    background: rgba(128, 0, 32, 0.05);
+}
+
+body.light-mode .customer-name {
+    color: #000000;
+}
+
+body.light-mode .stat-card {
+    background: rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(128, 0, 32, 0.2);
+}
+
+body.light-mode .stat-value {
+    color: #800020;
+}
+
+body.light-mode .search-section {
+    background: rgba(0, 0, 0, 0.03);
+    border: 2px solid rgba(128, 0, 32, 0.2);
+}
+
+body.light-mode #searchInput {
+    background: rgba(0, 0, 0, 0.07);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode #searchInput:focus {
+    border-color: #800020;
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.2);
+}
+
+/* ===== VIVID MODE ===== */
+body.vivid-mode {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #ffffff;
+}
+
+body.vivid-mode .main-header {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.vivid-mode .main-header::before {
+    background: linear-gradient(90deg, #FFD700, transparent);
+}
+
+body.vivid-mode .logo {
+    color: #FFD700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+body.vivid-mode .settings-btn {
+    background: rgba(255, 215, 0, 0.2);
+    border: 2px solid rgba(255, 215, 0, 0.5);
+    color: #FFD700;
+}
+
+body.vivid-mode .settings-btn:hover {
+    background: rgba(255, 215, 0, 0.4);
+}
+
+body.vivid-mode .btn-primary {
+    background: linear-gradient(135deg, #FFD700, #FFC400);
+    border: 2px solid #FFD700;
+    color: #000000;
+}
+
+body.vivid-mode .btn-primary:hover {
+    background: linear-gradient(135deg, #FFC400, #FFD700);
+    box-shadow: 0 7px 20px rgba(255, 215, 0, 0.4);
+}
+
+body.vivid-mode .customer-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+body.vivid-mode .customer-card:hover {
+    border-color: #FFD700;
+    background: rgba(255, 215, 0, 0.1);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+}
+
+body.vivid-mode .stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+body.vivid-mode .stat-value {
+    color: #FFD700;
+}
+
+body.vivid-mode .search-section {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+body.vivid-mode #searchInput {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+}
+
+body.vivid-mode #searchInput:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+body.vivid-mode ::-webkit-scrollbar-thumb {
+    background: #FFD700;
+}
+
+body.vivid-mode ::-webkit-scrollbar-thumb:hover {
+    background: #FFC400;
+}
+
+/* ===== PROFILE SECTIONS IN DIFFERENT THEMES ===== */
+body.light-mode .profile-section {
+    background: rgba(0, 0, 0, 0.03);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .profile-section:hover {
+    border-color: #800020;
+}
+
+body.vivid-mode .profile-section {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+body.vivid-mode .profile-section:hover {
+    border-color: #FFD700;
+}
+
+/* ===== INPUT STYLES IN DIFFERENT THEMES ===== */
+body.light-mode .measurement-input,
+body.light-mode #customerNotes,
+body.light-mode #sewingPrice {
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.vivid-mode .measurement-input,
+body.vivid-mode #customerNotes,
+body.vivid-mode #sewingPrice {
+    background: rgba(255, 255, 255, 0.15);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+    backdrop-filter: blur(5px);
+}
+
+/* ===== MODEL OPTIONS IN DIFFERENT THEMES ===== */
+body.light-mode .model-option {
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode .model-option.selected {
+    background: rgba(128, 0, 32, 0.3);
+    border-color: #800020;
+    color: #ffffff;
+}
+
+body.vivid-mode .model-option {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+body.vivid-mode .model-option.selected {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #FFD700;
+    color: #000000;
+}
+
+/* ===== BADGES IN DIFFERENT THEMES ===== */
+body.light-mode .badge.price {
+    background: rgba(40, 167, 69, 0.1);
+    color: #28a745;
+}
+
+body.light-mode .badge.paid {
+    background: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+}
+
+body.light-mode .badge.delivery {
+    background: rgba(128, 0, 32, 0.1);
+    color: #800020;
+}
+
+body.vivid-mode .badge.price {
+    background: rgba(46, 204, 64, 0.3);
+    color: #2ECC40;
+    border-color: #2ECC40;
+}
+
+body.vivid-mode .badge.paid {
+    background: rgba(0, 86, 179, 0.3);
+    color: #0056b3;
+    border-color: #0056b3;
+}
+
+body.vivid-mode .badge.delivery {
+    background: rgba(255, 215, 0, 0.3);
+    color: #FFD700;
+    border-color: #FFD700;
+}
+
+/* ===== SETTINGS DROPDOWN IN DIFFERENT THEMES ===== */
+body.light-mode .settings-dropdown {
+    background: rgba(255, 255, 255, 0.98);
+    border: 2px solid rgba(128, 0, 32, 0.3);
+}
+
+body.light-mode .settings-dropdown button {
+    background: rgba(0, 0, 0, 0.05);
+    color: #333333;
+}
+
+body.light-mode .settings-dropdown button:hover {
+    background: rgba(128, 0, 32, 0.1);
+    color: #800020;
+}
+
+body.vivid-mode .settings-dropdown {
+    background: rgba(30, 20, 60, 0.95);
+    border: 2px solid rgba(255, 215, 0, 0.4);
+}
+
+
+/* ===== CUSTOMER CARD DETAILS IN DIFFERENT THEMES ===== */
+body.light-mode .customer-id {
+    background: rgba(23, 162, 184, 0.1);
+    color: #17a2b8;
+}
+
+body.light-mode .customer-phone {
+    color: #17a2b8;
+}
+
+body.light-mode .customer-date {
+    color: #555555;
+}
+
+body.light-mode .customer-notes {
+    color: #555555;
+}
+
+body.vivid-mode .customer-id {
+    background: rgba(255, 215, 0, 0.15);
+    color: #FFD700;
+}
+
+body.vivid-mode .customer-phone {
+    color: #FFD700;
+}
+
+
+/* ===== MEASUREMENT GROUPS IN DIFFERENT THEMES ===== */
+body.light-mode .measurement-group,
+body.light-mode .model-category,
+body.light-mode .price-section,
+body.light-mode .payment-section,
+body.light-mode .delivery-section {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .measurement-group h4,
+body.light-mode .model-category h4,
+body.light-mode .price-section h4,
+body.light-mode .payment-section h4,
+body.light-mode .delivery-section h4 {
+    color: #17a2b8;
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .measurement-input:focus {
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+}
+
+body.vivid-mode .measurement-group,
+body.vivid-mode .model-category,
+body.vivid-mode .price-section,
+body.vivid-mode .payment-section,
+body.vivid-mode .delivery-section {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+body.vivid-mode .measurement-group h4,
+body.vivid-mode .model-category h4,
+body.vivid-mode .price-section h4,
+body.vivid-mode .payment-section h4,
+body.vivid-mode .delivery-section h4 {
+    color: #FFD700;
+    border-bottom-color: rgba(255, 255, 255, 0.15);
+}
+
+body.vivid-mode .measurement-input:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+
+/* ===== PAYMENT TOGGLE IN DIFFERENT THEMES ===== */
+body.light-mode .payment-toggle {
+    background: rgba(0, 0, 0, 0.04);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .payment-toggle:hover {
+    border-color: #800020;
+    background: rgba(128, 0, 32, 0.05);
+}
+
+body.vivid-mode .payment-toggle {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+body.vivid-mode .payment-toggle:hover {
+    border-color: #FFD700;
+}
+
+
+/* ===== DELIVERY DAYS IN DIFFERENT THEMES ===== */
+body.light-mode .day-button {
+    background: rgba(0, 0, 0, 0.04);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode .day-button:hover {
+    background: rgba(128, 0, 32, 0.08);
+    border-color: #800020;
+}
+
+body.light-mode .day-button.selected {
+    background: rgba(128, 0, 32, 0.25);
+    border-color: #800020;
+    color: #800020;
+}
+
+body.vivid-mode .day-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff;
+}
+
+body.vivid-mode .day-button:hover {
+    background: rgba(255, 215, 0, 0.15);
+    border-color: #FFD700;
+}
+
+body.vivid-mode .day-button.selected {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #FFD700;
+    color: #000000;
+    font-weight: bold;
+}
+
+
+/* ===== ORDERS IN DIFFERENT THEMES ===== */
+body.light-mode .order-item {
+    background: rgba(0, 0, 0, 0.03);
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .order-item:hover {
+    background: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.12);
+}
+
+body.light-mode .order-number {
+    color: #17a2b8;
+}
+
+body.light-mode .order-date {
+    color: #555555;
+}
+
+body.light-mode .order-details {
+    color: #333333;
+}
+
+body.light-mode .btn-delete-order {
+    background: rgba(220, 53, 69, 0.08);
+}
+
+body.vivid-mode .order-item {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+}
+
+body.vivid-mode .order-item:hover {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+body.vivid-mode .order-number {
+    color: #FFD700;
+}
+
+
+/* ===== SECTION HEADERS IN DIFFERENT THEMES ===== */
+body.light-mode .section-header {
+    border-bottom-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode #measurementsContainer .section-header h3 {
+    color: #28a745;
+}
+
+body.light-mode #modelsContainer .section-header h3 {
+    color: #b8860b;
+}
+
+body.light-mode #priceDeliveryContainer .section-header h3 {
+    color: #17a2b8;
+}
+
+body.light-mode #ordersContainer .section-header h3 {
+    color: #555555;
+}
+
+body.vivid-mode .section-header {
+    border-bottom-color: rgba(255, 215, 0, 0.3);
+}
+
+body.vivid-mode .section-header h3 {
+    color: #FFD700;
+}
+
+
+/* ===== CURRENCY & PRICE DISPLAY IN DIFFERENT THEMES ===== */
+body.light-mode .currency {
+    color: #800020;
+}
+
+body.vivid-mode .currency {
+    color: #FFD700;
+}
+
+body.light-mode #sewingPrice {
+    background: rgba(0, 0, 0, 0.05);
+    border: 2px solid rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode #sewingPrice:focus {
+    border-color: #800020;
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.15);
+}
+
+body.vivid-mode #sewingPrice:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+
+/* ===== DB STATUS IN DIFFERENT THEMES ===== */
+body.light-mode #dbStatus.connected {
+    background: rgba(40, 167, 69, 0.85);
+}
+
+body.light-mode #dbStatus.disconnected {
+    background: rgba(220, 53, 69, 0.85);
+}
+
+
+/* ===== MODAL IN DIFFERENT THEMES ===== */
+body.light-mode .modal-box {
+    background: #ffffff;
+    border-color: rgba(128, 0, 32, 0.3);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+body.light-mode .modal-header h3 {
+    color: #800020;
+}
+
+body.light-mode .modal-header {
+    border-bottom-color: rgba(128, 0, 32, 0.15);
+}
+
+body.light-mode .modal-field input {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #333333;
+}
+
+body.light-mode .modal-field input:focus {
+    border-color: #800020;
+    box-shadow: 0 0 0 3px rgba(128, 0, 32, 0.12);
+    background: rgba(0, 0, 0, 0.06);
+}
+
+body.light-mode .modal-footer {
+    border-top-color: rgba(0, 0, 0, 0.08);
+}
+
+body.vivid-mode .modal-box {
+    background: rgba(30, 20, 60, 0.97);
+    border-color: rgba(255, 215, 0, 0.5);
+}
+
+body.vivid-mode .modal-header h3 {
+    color: #FFD700;
+}
+
+body.vivid-mode .modal-field input:focus {
+    border-color: #FFD700;
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.15);
+}
+
+/* ===== CURRENCY SELECTOR IN DIFFERENT THEMES ===== */
+body.light-mode .settings-currency-section {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .currency-option {
+    background: rgba(0, 0, 0, 0.04);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #333333;
+}
+
+body.light-mode .currency-option.selected {
+    background: rgba(128, 0, 32, 0.2);
+    border-color: #800020;
+    color: #800020;
+}
+
+body.vivid-mode .currency-option.selected {
+    background: rgba(255, 215, 0, 0.3);
+    border-color: #FFD700;
+    color: #FFD700;
+}
+
+
+/* ===== MEASUREMENTS TABLE IN THEMES ===== */
+body.light-mode .mcell {
+    background: rgba(0, 0, 0, 0.03);
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+body.light-mode .mcell-label {
+    color: #800020;
+}
+
+body.light-mode .mcell-input {
+    color: #333333;
+    border-bottom-color: rgba(128, 0, 32, 0.3);
+}
+
+body.light-mode .mcell-input:focus {
+    border-bottom-color: #800020;
+    background: rgba(128, 0, 32, 0.03);
+}
+
+body.vivid-mode .mcell {
+    background: rgba(255, 255, 255, 0.07);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+body.vivid-mode .mcell-label {
+    color: #FFD700;
+}
+
+body.vivid-mode .mcell-input {
+    color: #ffffff;
+    border-bottom-color: rgba(255, 215, 0, 0.4);
+}
+
+body.vivid-mode .mcell-input:focus {
+    border-bottom-color: #FFD700;
+    background: rgba(255, 215, 0, 0.05);
+}

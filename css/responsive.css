@@ -1,0 +1,184 @@
+/* ========== RESPONSIVE DESIGN ========== */
+@media (max-width: 1200px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .logo {
+        font-size: 2.8rem;
+    }
+    
+    .stats-bar {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 992px) {
+    .logo {
+        font-size: 2.3rem;
+    }
+    
+    .logo i {
+        font-size: 3rem;
+    }
+    
+    #customerList {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+    
+    .measurements-grid,
+    .models-grid,
+    .price-delivery-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .main-header {
+        padding: 20px 15px;
+    }
+    
+    .logo {
+        font-size: 1.8rem;
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .logo i {
+        font-size: 2.5rem;
+    }
+    
+    .stats-bar {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .stat-card {
+        padding: 20px;
+    }
+    
+    .stat-value {
+        font-size: 2.8rem;
+    }
+    
+    .search-section {
+        padding: 25px 15px;
+    }
+    
+    .search-box {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #searchInput {
+        min-width: 100%;
+        margin-bottom: 15px;
+    }
+    
+    .search-buttons {
+        justify-content: center;
+    }
+    
+    .settings-menu {
+        top: 15px;
+        left: 15px;
+    }
+    
+    .settings-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+    
+    .settings-dropdown {
+        min-width: 250px;
+    }
+    
+    .profile-header-section {
+        padding: 25px 15px;
+    }
+    
+    .profile-name {
+        font-size: 2rem;
+    }
+    
+    .profile-phone {
+        font-size: 1.3rem;
+    }
+    
+    .profile-section {
+        padding: 25px 15px;
+    }
+    
+    .back-button {
+        top: 15px;
+        left: 15px;
+    }
+    
+    #dbStatus {
+        bottom: 15px;
+        left: 15px;
+        font-size: 0.8rem;
+        padding: 10px 15px;
+    }
+    
+    #globalNotification {
+        top: 15px;
+        right: 15px;
+        left: 15px;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+    
+    .tagline {
+        font-size: 1rem;
+    }
+    
+    .customer-card {
+        padding: 20px;
+    }
+    
+    .customer-name {
+        font-size: 1.3rem;
+    }
+    
+    .profile-action-buttons {
+        flex-direction: column;
+    }
+    
+    .profile-action-buttons button {
+        width: 100%;
+    }
+    
+    .print-buttons-container {
+        flex-direction: column;
+    }
+    
+    .print-buttons-container button {
+        width: 100%;
+    }
+    
+    .day-button {
+        min-width: 100px;
+        font-size: 1rem;
+    }
+    
+    .model-options {
+        justify-content: center;
+    }
+    
+    .model-option {
+        flex: 1;
+        min-width: 120px;
+        text-align: center;
+    }
+}
