@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#D4AF37">
+    <meta name="description" content="سیستم مدیریت خیاطی ALFAJR - نسخه حرفه‌ای">
+    
+    <!-- PWA Configuration -->
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" href="assets/icon-192.png">
+    <link rel="apple-touch-icon" href="assets/icon-192.png">
+    
+    <!-- آیکون‌های محلی (بدون نیاز به اینترنت) -->
+    <link rel="stylesheet" href="css/icons.css">
+    
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    
+    <title>ALFAJR خیاطی - سیستم مدیریت مشتریان</title>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <div id="loadingText">در حال راه‌اندازی سیستم ALFAJR...</div>
+    </div>
+
+    <!-- Global Notification -->
+    <div id="globalNotification"></div>
+
+    <!-- Database Status -->
+    <div id="dbStatus" class="db-status">
+        <i class="fas fa-database"></i>
+        <span>در حال اتصال به دیتابیس...</span>
+    </div>
+
+    <!-- Settings Menu -->
+    <div class="settings-menu">
+        <button class="settings-btn" onclick="toggleSettings()">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="settings-dropdown" id="settingsDropdown">
+            <button onclick="saveDataToFile()">
+                <i class="fas fa-save"></i>
+                ذخیره پشتیبان
+            </button>
+            <button onclick="document.getElementById('fileInput').click()">
+                <i class="fas fa-folder-open"></i>
+                بازیابی پشتیبان
+            </button>
+            <button onclick="toggleDarkMode()">
+                <i class="fas fa-moon"></i>
+                حالت تاریک
+            </button>
+            <button onclick="toggleLightMode()">
+                <i class="fas fa-sun"></i>
+                حالت روشن
+            </button>
+            <button onclick="toggleVividMode()">
+                <i class="fas fa-palette"></i>
+                حالت ویوید
+            </button>
+
+            <!-- انتخاب واحد پول -->
+            <div class="settings-currency-section">
+                <div class="settings-currency-label">
+                    <i class="fas fa-coins"></i>
+                    واحد پول
+                </div>
+                <div class="settings-currency-options" id="currencyOptions">
+                    <button class="currency-option selected" onclick="setCurrency('افغانی')">افغانی</button>
+                    <button class="currency-option" onclick="setCurrency('تومان')">تومان</button>
+                    <button class="currency-option" onclick="setCurrency('دالر')">دالر</button>
+                </div>
+            </div>
+
+            <button onclick="optimizeDatabase()">
+                <i class="fas fa-broom"></i>
+                بهینه‌سازی دیتابیس
+            </button>
+            <button onclick="clearAllData()" class="delete-btn">
+                <i class="fas fa-trash"></i>
+                پاک‌سازی کامل
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal افزودن مشتری جدید -->
+    <div id="addCustomerModal" class="modal-overlay" onclick="if(event.target===this)closeAddCustomerModal()" style="display:none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fas fa-user-plus"></i> مشتری جدید</h3>
+                <button class="modal-close" onclick="closeAddCustomerModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-field">
+                    <label>نام کامل مشتری <span class="required">*</span></label>
+                    <input type="text" id="modalCustomerName" placeholder="مثال: احمد رحیمی" autocomplete="off">
+                    <span class="field-error" id="nameError"></span>
+                </div>
+                <div class="modal-field">
+                    <label>شماره تلفن <span class="required">*</span></label>
+                    <input type="tel" id="modalCustomerPhone" placeholder="مثال: 0799123456" autocomplete="off">
+                    <span class="field-error" id="phoneError"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeAddCustomerModal()">
+                    <i class="fas fa-times"></i> انصراف
+                </button>
+                <button class="btn-primary" onclick="submitAddCustomer()">
+                    <i class="fas fa-user-plus"></i> افزودن مشتری
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal ویرایش نام و شماره مشتری -->
+    <div id="editCustomerModal" class="modal-overlay" onclick="if(event.target===this)closeEditCustomerModal()" style="display:none;">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3><i class="fas fa-edit"></i> ویرایش مشخصات مشتری</h3>
+                <button class="modal-close" onclick="closeEditCustomerModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-field">
+                    <label>نام کامل مشتری <span class="required">*</span></label>
+                    <input type="text" id="editCustomerName" placeholder="مثال: احمد رحیمی" autocomplete="off">
+                    <span class="field-error" id="editNameError"></span>
+                </div>
+                <div class="modal-field">
+                    <label>شماره تلفن <span class="required">*</span></label>
+                    <input type="tel" id="editCustomerPhone" placeholder="مثال: 0799123456" autocomplete="off">
+                    <span class="field-error" id="editPhoneError"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeEditCustomerModal()">
+                    <i class="fas fa-times"></i> انصراف
+                </button>
+                <button class="btn-primary" onclick="submitEditCustomerInfo()">
+                    <i class="fas fa-save"></i> ذخیره تغییرات
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden File Input for Backup -->
+    <input type="file" id="fileInput" accept=".json" style="display: none;">
+
+    <div class="container">
+        <!-- Home Page -->
+        <div id="homePage">
+            <!-- Main Header -->
+            <div class="main-header">
+                <div class="logo">
+                    <i class="fas fa-tshirt"></i>
+                    <div>
+                        <div>ALFAJR خیاطی</div>
+                        <div class="tagline">سیستم مدیریت حرفه‌ای مشتریان و سفارشات</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="stats-bar" id="statsBar">
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-value" id="totalCustomers">0</div>
+                    <div class="stat-label">کل مشتریان</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="stat-value" id="paidCustomers">0</div>
+                    <div class="stat-label">پرداخت شده</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon"><i class="fas fa-clipboard-list"></i></div>
+                    <div class="stat-value" id="activeOrders">0</div>
+                    <div class="stat-label">سفارشات فعال</div>
+                </div>
+            </div>
+
+            <!-- Search Section -->
+            <div class="search-section">
+                <div class="search-header">
+                    <i class="fas fa-search"></i>
+                    <h3>جستجوی مشتریان</h3>
+                </div>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="جستجو بر اساس نام، شماره تماس، کد یا توضیحات...">
+                    <div class="search-buttons">
+                        <button class="btn-primary" onclick="searchCustomer()">
+                            <i class="fas fa-search"></i>
+                            جستجو
+                        </button>
+                        <button class="btn-success" onclick="addCustomer()">
+                            <i class="fas fa-user-plus"></i>
+                            مشتری جدید
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customer List -->
+            <div class="customer-list-section">
+                <div class="section-title">
+                    <i class="fas fa-users"></i>
+                    <h3>لیست مشتریان</h3>
+                </div>
+                <div id="customerList">
+                    <!-- Customer cards will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Page -->
+        <div id="profilePage" style="display: none;">
+            <!-- Back Button -->
+            <button class="back-button btn-secondary" onclick="backHome()">
+                <i class="fas fa-arrow-right"></i>
+                بازگشت به لیست
+            </button>
+
+            <!-- Profile Header -->
+            <div class="profile-header-section">
+                <div class="profile-main-info">
+                    <div class="profile-name" id="profileName">نام مشتری</div>
+                    <div class="profile-phone" id="profilePhone">
+                        <i class="fas fa-phone"></i>
+                        <span id="profilePhoneText">شماره تماس</span>
+                    </div>
+                    <div class="profile-id" id="profileId">کد: ----------</div>
+                    <button class="btn-secondary btn-edit-info" onclick="openEditCustomerModal()">
+                        <i class="fas fa-edit"></i>
+                        ویرایش نام و شماره
+                    </button>
+                </div>
+
+                <!-- Print Buttons -->
+                <div class="print-buttons-container" id="printButtonsContainer">
+                    <!-- Print buttons will be added here dynamically -->
+                </div>
+            </div>
+
+            <!-- Customer Notes -->
+            <div class="profile-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-sticky-note"></i> توضیحات مشتری</h3>
+                </div>
+                <textarea id="customerNotes" placeholder="توضیحات و یادداشت‌های مربوط به این مشتری را اینجا وارد کنید..."></textarea>
+            </div>
+
+            <!-- Measurements Section -->
+            <div class="profile-section" id="measurementsContainer">
+                <!-- Measurements will be loaded here -->
+            </div>
+
+            <!-- Models Section -->
+            <div class="profile-section" id="modelsContainer">
+                <!-- Models will be loaded here -->
+            </div>
+
+            <!-- Price & Delivery Section -->
+            <div class="profile-section" id="priceDeliveryContainer">
+                <!-- Price & Delivery will be loaded here -->
+            </div>
+
+            <!-- Orders Section -->
+            <div class="profile-section" id="ordersContainer">
+                <!-- Orders will be loaded here -->
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="profile-action-buttons">
+                <button class="btn-primary" onclick="saveCustomer()">
+                    <i class="fas fa-save"></i>
+                    ذخیره تغییرات
+                </button>
+                <button class="btn-success" onclick="printFullTable()">
+                    <i class="fas fa-print"></i>
+                    چاپ لیبل اندازه
+                </button>
+                <button class="btn-secondary" onclick="printProfessionalInvoice()">
+                    <i class="fas fa-file-invoice"></i>
+                    چاپ فاکتور
+                </button>
+                <button class="btn-danger" onclick="deleteCurrentCustomer()">
+                    <i class="fas fa-trash"></i>
+                    حذف مشتری
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/config.js"></script>
+    <script src="js/customer.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/profile.js"></script>
+    <script src="js/print.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- PWA Service Worker -->
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('service-worker.js')
+                    .then(registration => {
+                        console.log('✅ Service Worker ثبت شد:', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('❌ خطا در ثبت Service Worker:', error);
+                    });
+            });
+        }
+
+        // Toggle Settings Dropdown
+        function toggleSettings() {
+            const dropdown = document.getElementById('settingsDropdown');
+            dropdown.classList.toggle('show');
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', (event) => {
+            const dropdown = document.getElementById('settingsDropdown');
+            const settingsBtn = document.querySelector('.settings-btn');
+            
+            if (dropdown && settingsBtn && 
+                !dropdown.contains(event.target) && 
+                !settingsBtn.contains(event.target)) {
+                dropdown.classList.remove('show');
+            }
+        });
+
+        async function optimizeDatabase() {
+            if (!confirm('آیا از بهینه‌سازی دیتابیس مطمئن هستید؟')) return;
+
+            showLoading('در حال بهینه‌سازی دیتابیس...');
+
+            try {
+                // مرحله ۱: مشتریان حذف‌شده (soft-deleted) رو از DB پاک کن
+                const db = dbManager.db;
+                const tx = db.transaction(['customers'], 'readwrite');
+                const store = tx.objectStore('customers');
+
+                const allRecords = await new Promise((res, rej) => {
+                    const req = store.getAll();
+                    req.onsuccess = () => res(req.result);
+                    req.onerror  = () => rej(req.error);
+                });
+
+                let removed = 0;
+                for (const record of allRecords) {
+                    if (record.deleted) {
+                        await new Promise((res, rej) => {
+                            const req = store.delete(record.id);
+                            req.onsuccess = () => res();
+                            req.onerror   = () => rej(req.error);
+                        });
+                        removed++;
+                    }
+                }
+
+                // مرحله ۲: backup قدیمی‌ها رو پاک کن (بیشتر از ۱۰ تا نگه‌دار)
+                const txb = db.transaction(['backups'], 'readwrite');
+                const backupStore = txb.objectStore('backups');
+                const backups = await new Promise((res, rej) => {
+                    const req = backupStore.getAll();
+                    req.onsuccess = () => res(req.result);
+                    req.onerror   = () => rej(req.error);
+                });
+
+                let removedBackups = 0;
+                if (backups.length > 10) {
+                    backups.sort((a, b) => new Date(a.date) - new Date(b.date));
+                    const toDelete = backups.slice(0, backups.length - 10);
+                    for (const b of toDelete) {
+                        await new Promise((res, rej) => {
+                            const req = backupStore.delete(b.id);
+                            req.onsuccess = () => res();
+                            req.onerror   = () => rej(req.error);
+                        });
+                        removedBackups++;
+                    }
+                }
+
+                hideLoading();
+                showNotification(
+                    `بهینه‌سازی انجام شد — ${removed} رکورد حذفی و ${removedBackups} backup قدیمی پاک شد`,
+                    'success',
+                    5000
+                );
+            } catch (error) {
+                hideLoading();
+                showNotification('خطا در بهینه‌سازی: ' + error.message, 'error');
+            }
+        }
+
+        // Export functions to window object
+        window.toggleSettings = toggleSettings;
+        window.optimizeDatabase = optimizeDatabase;
+    </script>
+</body>
+</html>
